@@ -10,14 +10,7 @@ FeatureTypes = [FeatureType.TWO_VERTICAL, FeatureType.TWO_HORIZONTAL, FeatureTyp
 class HaarLikeFeature(object):
 
     def __init__(self, feature_type, position, width, height, threshold, polarity):
-        '''
-        @param feature_type: see FeatureType enum
-        @param position: top left corner where the feature begins (tuple)
-        @param width: width of the feature
-        @param height: height of the feature
-        @param threshold: feature threshold
-        @param polarity: polarity of the feature (-1, 1)
-        '''
+        
         self.type = feature_type
         self.top_left = position
         self.bottom_right = (position[0] + width, position[1] + height)

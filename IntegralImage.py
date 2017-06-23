@@ -30,23 +30,9 @@ class IntegralImage:
         
         
     def calculate_integral(self):
-        # an index of -1 refers to the last row/column
-        # since rowSum is calculated starting from (0,0),
-        # rowSum(x, -1) == 0 holds for all x
         
-        '''
-        if len(self.original.shape)>2:
-            rowSum = np.zeros((self.original.shape[0],self.original.shape[1]))
-            # we need an additional column and row
-            self.integral = np.zeros((self.original.shape[0]+1, self.original.shape[1]+1))
-            for x in range(self.original.shape[1]):
-                for y in range(self.original.shape[0]):
-                    rowSum[y, x] = rowSum[y-1, x] + self.original[y, x,0]
-                    self.integral[y+1, x+1] = self.integral[y+1, x-1+1] + rowSum[y, x]
-        else:
-        '''
         rowSum = np.zeros(self.original.shape)
-        # we need an additional column and row
+        
         self.integral = np.zeros((self.original.shape[0]+1, self.original.shape[1]+1))
         for x in range(self.original.shape[1]):
             for y in range(self.original.shape[0]):
@@ -54,23 +40,6 @@ class IntegralImage:
                 self.integral[y+1, x+1] = self.integral[y+1, x-1+1] + rowSum[y, x]
     
     def get_area_sum(self, topLeft, bottomRight):
-        '''
-        if topLeft[0] >= self.integral.shape[0]:
-            print('shape[0] : tl {0} VS {1}'.format(topLeft,self.integral.shape))
-        if  bottomRight[0]>= self.integral.shape[0]:
-            print('shape[0] : br {0} VS {1}'.format(bottomRight,self.integral.shape))
-        if topLeft[1] >= self.integral.shape[1]:
-            print('shape[1] : tl {0}'.format(topLeft))
-        if  bottomRight[1]>=self.integral.shape[1]:
-            print('shape[1] : br {0}'.format(bottomRight))   
-        '''
-        '''
-        Calculates the sum in the rectangle specified by the given tuples.
-        @param topLeft: (x,y) of the rectangle's top left corner
-        @param bottomRight: (x,y) of the rectangle's bottom right corner 
-        '''
-        #print('get_area_sum: {0} , {1}'.format(topLeft,bottomRight))
-        # swap tuples
         
         topLeft = (topLeft[1], topLeft[0])
         bottomRight = (bottomRight[1], bottomRight[0])
